@@ -2,6 +2,7 @@
 # vi: set ft=ruby :
 $hostsfile_update = <<-'SCRIPT'
 echo -e '192.168.50.110 control.example.com control\n192.168.50.111 node1.example.com node1\n192.168.50.112 node2.example.com node2' >> /etc/hosts
+sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config && systemctl restart sshd
 SCRIPT
 
 Vagrant.configure("2") do |config|
