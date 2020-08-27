@@ -1,0 +1,14 @@
+users:
+  vasya:
+    username: vasya
+    homedir: /home/vasya
+    shell: /bin/bash
+  misha:
+    username: misha
+    homedir: /home/misha
+    shell: /bin/bash
+  petya:
+    username: petya
+    homedir: /home/petya
+    shell: /bin/bash
+    
