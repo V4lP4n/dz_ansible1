@@ -1,7 +1,0 @@
----
-- name: show facts
-  hosts: all
-  tasks:
-    - name: print facts
-      debug:
-        msg: "{{ ansible_facts['ansible_local']['package'] }}"
