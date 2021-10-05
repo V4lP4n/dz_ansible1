@@ -1,0 +1,5 @@
+[nodes]
+node[1:2].example.com
+
+[lamp]
+node2.example.com

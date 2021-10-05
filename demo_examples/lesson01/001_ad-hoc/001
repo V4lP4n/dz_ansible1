@@ -1,0 +1,3 @@
+ansible all -i inventory -m command -a id
+
+ansible node1.example.com -i inventory -m copy -a 'content="Hello from Ansible\n" dest=/etc/motd'

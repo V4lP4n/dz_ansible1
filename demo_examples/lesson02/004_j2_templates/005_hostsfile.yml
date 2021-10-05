@@ -1,0 +1,8 @@
+---
+- name: update /tmp/hosts file dynamically
+  hosts: all
+  tasks:
+    - name: update /tmp/hosts
+      template:
+        src: templates/hosts.j2
+        dest: /tmp/hosts

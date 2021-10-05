@@ -1,0 +1,9 @@
+- name: Demo of nested loop
+  hosts: node1.example.com
+  vars:
+    listvar1: ['a', 'b', 'c']
+    listvar2: [1, 2, 3]
+  tasks:
+  - debug:
+      msg: "{{ item.0 }}{{ item.1 }}"
+    loop: "{{ listvar1|product(listvar2)|list }}"

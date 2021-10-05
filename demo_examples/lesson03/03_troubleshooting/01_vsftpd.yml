@@ -1,0 +1,19 @@
+---
+- name: deploy vsftpd
+  hosts: node2.example.com
+  vars:
+    package: vsfptd
+  tasks: 
+  - name: install vsftpd
+    package:
+      name: {{ package }}
+      state: present
+  - name: enable vsftpd
+    service: name=vsftpd enabled=true
+  - name: create readme file
+    copy:
+      content: "hello from ansible"
+      dest: /var/ftp/pub/README
+      force: no
+      mode: 0444
+...

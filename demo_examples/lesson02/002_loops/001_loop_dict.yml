@@ -1,0 +1,10 @@
+---
+- name: show arrays
+  hosts: node1.example.com
+  vars_files:
+    - vars/users
+  tasks:
+    - name: print array values
+      debug:
+        msg: User {{ item.key }} has homedirectory {{ item.value.homedir }} and shell {{ item.value.shell }}
+      with_dict: "{{ users }}"

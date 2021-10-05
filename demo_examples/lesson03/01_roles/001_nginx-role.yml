@@ -1,0 +1,6 @@
+---
+- name: use galaxy nginx role
+  hosts: node2.example.com
+
+  roles:
+    - role: geerlingguy.nginx

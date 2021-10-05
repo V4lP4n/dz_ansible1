@@ -1,0 +1,13 @@
+# from Ansible Galaxy
+# ansible-galaxy install -r roles/requirements.yml -p roles
+- src: geerlingguy.docker
+
+- src: geerlingguy.nginx
+  version: 2.7.0
+  name: nginx
+
+# from a tar ball:
+#- src: file:///opt/local/roles/myrole.tar
+#  name: myrole
+#  version: 1.0
+

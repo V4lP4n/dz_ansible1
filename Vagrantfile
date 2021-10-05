@@ -41,5 +41,5 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--audio", "none"]
     end
   end
-
+  config.vbguest.auto_update = false
 end
