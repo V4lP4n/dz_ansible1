@@ -1,3 +1,6 @@
-.vagrant
-demo_examples
+.vagrant/*
+demo_examples/*
 .gitignore.swp
+.vagrant/machines/node2/libvirt/private_key
+.vagrant/machines/node2/libvirt/private_key
+.vagrant/machines/node2/libvirt/private_key

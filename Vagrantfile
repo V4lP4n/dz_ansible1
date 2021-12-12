@@ -10,10 +10,13 @@ $control_configure = <<-'SCRIPT'
 sudo dnf update -y
 sudo dnf install python3 -y
 sudo dnf install python3-pip -y
+pip3 install --upgrade pip --user
 pip3 install ansible --user
 #install git
 sudo dnf install git -y
 #prepare repo
+cd ~
+git clone https://github.com/V4lP4n/dz_ansible1
 
 SCRIPT
 
@@ -27,6 +30,7 @@ Vagrant.configure("2") do |config|
       control.vm.hostname = "control.example.com"
       control.vm.network "private_network", ip: "192.168.56.110"
       control.vm.provision "shell", inline: $hostsfile_update
+      control.vm.provision "shell", inline: $control_configure, privileged: false
       control.vm.provider "libvirt" do |l|
         l.boot 'network'
         l.boot 'hd'      
