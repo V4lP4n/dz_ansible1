@@ -5,7 +5,7 @@
     - name: Ensure that httpd is not installed
       yum:
         name: httpd
-        state: apsent
+        state: removed
     
     - name: configure firewalld
       firewalld:
