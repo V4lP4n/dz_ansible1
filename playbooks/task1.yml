@@ -16,6 +16,12 @@
         service: http
         permanent: yes
         state: enabled
+    - name: Ensure /var/www/html is exists
+      file:
+        name: var/www/html/index.html
+        state: directory
+        owner: httpd
+
     - name: Ensure /var/www/html/index.html is exists
       file:
         name: var/www/html/index.html
