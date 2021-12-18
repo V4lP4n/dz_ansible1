@@ -7,6 +7,3 @@ all:
       hosts:
         node1.example.com:
         node2.example.com:
-      vars:
-        ansible_user: ansible
-      
