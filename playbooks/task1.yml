@@ -18,13 +18,13 @@
         state: enabled
     - name: Ensure /var/www/html is exists
       file:
-        name: var/www/html/
+        name: /var/www/html/
         state: directory
   
 
     - name: Ensure /var/www/html/index.html is exists
       file:
-        name: var/www/html/index.html
+        name: /var/www/html/index.html
         state: touch    
 
     - name: Ensure correct innerds of index.html
