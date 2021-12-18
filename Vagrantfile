@@ -5,6 +5,9 @@ echo -e '192.168.56.110 control.example.com control\n192.168.56.111 node1.exampl
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config && systemctl restart sshd
 sudo useradd ansible
 echo "ansible ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers.d/ansible
+sudo su ansible
+echo password | passwd --stdin ansible
+
 SCRIPT
 
 $control_configure = <<-'SCRIPT'
@@ -17,17 +20,19 @@ pip3 install ansible --user
 #install git
 sudo dnf install git -y
 #prepare repo
+sudo su ansible
 cd ~
 git clone https://github.com/V4lP4n/dz_ansible1
 
 #gen and copy ssh key
 curl https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/sshpass-1.06-9.el8.x86_64.rpm -o sshpass.rpm
 sudo dnf install -y ./sshpass.rpm
-sudo su ansible
+
 ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa -q -N ""
 #i know about ssh-copy-id but for some reason it's not workinng in this script
 echo vagrant | sshpass scp ~/.ssh/id_rsa.pub vagrant@node1:~/.ssh/authorized_keys 
 echo vagrant | sshpass scp ~/.ssh/id_rsa.pub vagrant@node2:~/.ssh/authorized_keys 
+exit 0
 SCRIPT
 
 Vagrant.configure("2") do |config|
