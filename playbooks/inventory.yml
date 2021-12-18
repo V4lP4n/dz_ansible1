@@ -1,0 +1,12 @@
+all:
+  children:
+    master:
+      hosts:
+        control.example.com:
+    slave:
+      hosts:
+        node1.example.com:
+        node2.example.com:
+      vars:
+        ssh_user: ansible
+      

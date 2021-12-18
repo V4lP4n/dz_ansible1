@@ -5,9 +5,9 @@ echo -e '192.168.56.110 control.example.com control\n192.168.56.111 node1.exampl
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config && systemctl restart sshd
 sudo useradd ansible
 echo "ansible ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers.d/ansible
-sudo su ansible
 echo password | passwd --stdin ansible
-
+mkdir -p '/home/ansible/.ssh'
+chown -R ansible:ansible /home/ansible
 SCRIPT
 
 $control_configure = <<-'SCRIPT'
@@ -15,26 +15,30 @@ $control_configure = <<-'SCRIPT'
 sudo dnf update -y
 sudo dnf install python3 -y
 sudo dnf install python3-pip -y
-pip3 install --upgrade pip --user
-pip3 install ansible --user
+sudo -u ansible pip3 install --upgrade pip --user
+sudo -u ansible pip3 install ansible --user
 #install git
 sudo dnf install git -y
 #prepare repo
-sudo su ansible
 cd ~
-git clone https://github.com/V4lP4n/dz_ansible1
+sudo -u ansible git clone https://github.com/V4lP4n/dz_ansible1 /home/ansible/dz_ansible
 
 #gen and copy ssh key
 curl https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/sshpass-1.06-9.el8.x86_64.rpm -o sshpass.rpm
 sudo dnf install -y ./sshpass.rpm
 
-ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa -q -N ""
-#i know about ssh-copy-id but for some reason it's not workinng in this script
-echo vagrant | sshpass scp ~/.ssh/id_rsa.pub vagrant@node1:~/.ssh/authorized_keys 
-echo vagrant | sshpass scp ~/.ssh/id_rsa.pub vagrant@node2:~/.ssh/authorized_keys 
-exit 0
+
 SCRIPT
 
+$ssh_key_setup  = <<-'SCRIPT'
+ssh-keygen -b 2048 -t rsa -f /home/ansible/.ssh/id_rsa -q -N ""
+
+chown -R ansible:ansible /home/ansible
+
+sudo -u ansible sshpass -p 'password' ssh-copy-id ansible@node1 -o StrictHostKeyChecking=no
+sudo -u ansible sshpass -p 'password' ssh-copy-id ansible@node2 -o StrictHostKeyChecking=no
+
+SCRIPT
 Vagrant.configure("2") do |config|
     config.vm.provider "libvirt" do |lv|
      
@@ -46,6 +50,7 @@ Vagrant.configure("2") do |config|
       control.vm.network "private_network", ip: "192.168.56.110"
       control.vm.provision "shell", inline: $hostsfile_update
       control.vm.provision "shell", inline: $control_configure, privileged: false
+      control.vm.provision "shell", inline: $ssh_key_setup
       control.vm.provider "libvirt" do |l|
         l.boot 'network'
         l.boot 'hd'      
