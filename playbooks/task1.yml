@@ -30,7 +30,7 @@
     - name: Ensure correct innerds of index.html
       lineinfile:
         path: /var/ww/html/index.html
-        search_string: "<p> Welcome to my web server </p>"
+        line: "<p> Welcome to my web server </p>"
         state: present
 
 
