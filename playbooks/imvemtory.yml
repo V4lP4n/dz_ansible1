@@ -2,13 +2,13 @@ all:
   children:
     master:
       hosts:
-        control.example.com
+        control: control.example.com
     slave:
       hosts:
-        node1.example.com
-        node1.example.com
-    vars:
-      ansible_connection = ssh
-      ansible_user = vagrant
-      ansible_ssh_pass = vagrant
+        node1: node1.example.com
+        node2: node2.example.com
+      vars:
+        ansible_connection: ssh
+        ansible_user: vagrant
+        ansible_ssh_pass: vagrant
       
