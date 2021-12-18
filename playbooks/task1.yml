@@ -1,0 +1,30 @@
+- name: Task 1, httpd installation enabling and creating of index.html
+  hosts: slave
+  tasks:
+    - name: Ensure that httpd is installed
+      yum:
+        name: httpd
+        state: present
+    - name: Ensure that httpd is enabled and started
+      systemd:
+        name: httpd
+        state: started
+        enabled: yes
+    - name: configure firewalld
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+    - name: Ensure /var/www/html/index.html is exists
+      file:
+        name: var/www/html/index.html
+        owner: httpd
+        mode: 777
+    - name: Ensure correct innerds of index.html
+      lineinfile:
+        path: /var/ww/html/index.html
+        search_string: "<p> Welcome to my web server </p>"
+        state: present
+
+
+        
