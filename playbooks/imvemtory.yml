@@ -1,0 +1,11 @@
+all:
+  children:
+    master:
+      hosts:
+        control.example.com
+    slave:
+      hosts:
+        node1.example.com
+        node1.example.com
+    # vars:
+      
