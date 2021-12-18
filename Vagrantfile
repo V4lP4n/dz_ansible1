@@ -18,6 +18,13 @@ sudo dnf install git -y
 cd ~
 git clone https://github.com/V4lP4n/dz_ansible1
 
+#gen and copy ssh key
+curl https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/sshpass-1.06-9.el8.x86_64.rpm -o sshpass.rpm
+sudo dnf install -y ./sshpass.rpm
+ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa -q -N ""
+#i know about ssh-copy-id but for some reason it's not workinng in this script
+echo vagrant | sshpass scp ~/.ssh/id_rsa.pub vagrant@node1:~/.ssh/authorized_keys 
+echo vagrant | sshpass scp ~/.ssh/id_rsa.pub vagrant@node2:~/.ssh/authorized_keys 
 SCRIPT
 
 Vagrant.configure("2") do |config|
