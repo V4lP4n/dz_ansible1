@@ -19,7 +19,7 @@
     - name: Ensure /var/www/html/index.html is exists
       file:
         name: var/www/html/index.html
-        state: present
+        state: file
         owner: httpd
         mode: 777
     - name: Ensure correct innerds of index.html
