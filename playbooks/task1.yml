@@ -29,7 +29,7 @@
 
     - name: Ensure correct innerds of index.html
       lineinfile:
-        path: /var/ww/html/index.html
+        path: /var/www/html/index.html
         line: "<p> Welcome to my web server </p>"
         state: present
 
