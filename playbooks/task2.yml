@@ -1,0 +1,23 @@
+- name: Task 2, httpd deleting enabling and deleting of index.html
+  hosts: slave
+  become: yes
+  tasks:
+    - name: Ensure that httpd is not installed
+      yum:
+        name: httpd
+        state: apsent
+    
+    - name: configure firewalld
+      firewalld:
+        service: http
+        permanent: yes
+        state: disabled   
+
+    - name: Ensure /var/www/html/index.html is not exists
+      file:
+        name: /var/www/html/index.html
+        state: absent    
+
+ 
+
+        
