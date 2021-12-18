@@ -18,16 +18,15 @@
         state: enabled
     - name: Ensure /var/www/html is exists
       file:
-        name: var/www/html/index.html
+        name: var/www/html/
         state: directory
-        owner: httpd
+  
 
     - name: Ensure /var/www/html/index.html is exists
       file:
         name: var/www/html/index.html
-        state: touch
-        owner: httpd
-        mode: 777
+        state: touch    
+
     - name: Ensure correct innerds of index.html
       lineinfile:
         path: /var/ww/html/index.html
