@@ -1,0 +1,13 @@
+- name: Task 2, httpd deleting enabling and deleting of index.html
+  hosts: slave
+  become: yes
+  tasks:
+    - name: Add net.ifnames=0 biosdevname=0 in the end of GRUB_CMDLINE_LINUX
+      lineinfile:
+        state: present
+        dest: /etc/default/grub
+        backrefs: yes
+        regexp: '^(GRUB_CMDLINE_LINUX=(?!.* net.ifnames=0 biosdevname=0)\"[^\"]+)(\".*)'
+        line: '\1 net.ifnames=0 biosdevname=0\2'
+    - name: Apply config
+      shell: grub2-mkconfig > /boot/grub2/grub.cfg
