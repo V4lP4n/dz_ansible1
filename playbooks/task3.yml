@@ -10,4 +10,4 @@
         regexp: '^(GRUB_CMDLINE_LINUX=(?!.* net.ifnames=0 biosdevname=0)\"[^\"]+)(\".*)'
         line: '\1 net.ifnames=0 biosdevname=0\2'
     - name: Apply config
-      shell: grub2-mkconfig > /boot/grub2/grub.cfg
+      shell: grub2-mkconfig -o /boot/grub2/grub.cfg
