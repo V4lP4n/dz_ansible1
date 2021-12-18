@@ -11,11 +11,24 @@
         name: httpd
         state: started
         enabled: yes
-    - name: configure firewalld
+    - name: configure firewalld for httpd
       firewalld:
         service: http
         permanent: yes
         state: enabled
+
+    - name: configure firewalld for ssh
+      firewalld:
+        service: ssh
+        permanent: yes
+        state: enabled
+
+    - name: enable firewalld 
+      systemd:
+        name: firewalld
+        state: started
+        enabled: yes
+
     - name: Ensure /var/www/html is exists
       file:
         name: /var/www/html/
