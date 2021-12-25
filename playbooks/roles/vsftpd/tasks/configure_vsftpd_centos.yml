@@ -11,9 +11,9 @@
     state: started
     enabled: yes
 
-- name: configure firewalld for httpd
+- name: configure firewalld for ftp
   firewalld:
-    service: ftp
+    service: vsftpd
     permanent: yes
     state: enabled
 
