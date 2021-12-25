@@ -13,7 +13,7 @@
 
 - name: configure firewalld for httpd
   firewalld:
-    rich_rule: rule service name="ftp" audit limit value="1/m" accept
+    service: ftp
     permanent: yes
     state: enabled
 
