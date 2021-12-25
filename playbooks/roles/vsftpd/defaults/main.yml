@@ -1,2 +1,4 @@
 ---
 # defaults file for vsftpd
+ftp_pub_dir: '/var/ftp/pub'
+ftp_upload_dir: '/var/ftp/pub/upload'

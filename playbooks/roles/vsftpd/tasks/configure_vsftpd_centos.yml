@@ -26,4 +26,9 @@
     name: firewalld
     state: started
     enabled: yes
-
+- name: prepare dirs
+  file:
+    name:
+      - {{ ftp_pub_dir }}
+      - {{ ftp_upload_dir }}
+    state: directory
