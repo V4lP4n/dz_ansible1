@@ -1,3 +1,2 @@
----
-# tasks file for httpd
-- include_task: configure_httpd_centos.yml
+- include_tasks: configure_httpd_centos.yml
+  when: ansible_distribution == "CentOS"
