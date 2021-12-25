@@ -1,0 +1,5 @@
+- name: testing httpd role
+  hosts: slave
+  roles:
+  - vsftpd
+    
