@@ -8,7 +8,7 @@ anon_root: '/var/ftp/pub'
 no_anon_password: 'YES'
 anon_upd: 'YES'
 anon_mkdir: 'YES'
-allow_ftpd_anon_write: 'YES'
+write_enable: 'YES'
 listen: 'YES'
 listen6: 'NO'
 
