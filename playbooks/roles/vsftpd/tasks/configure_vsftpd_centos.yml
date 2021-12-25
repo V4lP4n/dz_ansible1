@@ -55,6 +55,11 @@
     name: ftpd_anon_write
     state: yes
     persistent: yes
+- name: configure secontecst
+  sefcontext:
+   target: '{{ ftp_upload_dir }}(/.*)?'
+   setype: public_content_rw_t
+   state: present
 
 
  
