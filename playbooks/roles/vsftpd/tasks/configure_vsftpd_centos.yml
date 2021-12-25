@@ -13,11 +13,10 @@
 
 - name: configure firewalld for ftp
   firewalld:
-    port: 
-      - 21/tcp
-      - 20/tcp
+    port: "{{ item }}"
     permanent: yes
     state: enabled
+  with_items: ["21/tcp", "20/tcp"]
 
 - name: configure firewalld for ssh
   firewalld:
