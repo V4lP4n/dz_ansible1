@@ -1,0 +1,29 @@
+- name: Ensure that vsftpd is installed
+  yum:
+    name: vsftpd
+    state: present
+
+- name: Ensure that vsftpd is enabled and started
+  systemd:
+    name: vsftpd
+    state: started
+    enabled: yes
+
+- name: configure firewalld for httpd
+  firewalld:
+    service: ftp
+    permanent: yes
+    state: enabled
+
+- name: configure firewalld for ssh
+  firewalld:
+    service: ssh
+    permanent: yes
+    state: enabled
+
+- name: enable firewalld
+  systemd:
+    name: firewalld
+    state: started
+    enabled: yes
+
