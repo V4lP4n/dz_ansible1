@@ -34,6 +34,8 @@
     name: "{{ item }}"
     state: directory
     mode: 0777
+    owner: ftp
+    group: ftp
   with_items: ["{{ ftp_pub_dir }}", "{{ ftp_upload_dir }}"]
 
 - name: gen conf file
