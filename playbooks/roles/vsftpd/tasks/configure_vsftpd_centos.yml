@@ -1,6 +1,8 @@
-- name: Ensure that vsftpd is installed
+- name: Ensure that vsftpd is installed same 4 policycoreutils-python-utils for selinux control
   yum:
-    name: vsftpd
+    name: 
+      - vsftpd
+      - policycoreutils-python-utils 
     state: present
 
 - name: Ensure that vsftpd is enabled and started
