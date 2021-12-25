@@ -52,7 +52,7 @@
 
 - name: configure selinux
   seboolean:
-    name: 
+    name: {{ item }}
     state: yes
     persistent: yes
   with_items: ["ftpd_anon_write", "ftp_home_dir", "ftpd_use_passive_mode" ]
