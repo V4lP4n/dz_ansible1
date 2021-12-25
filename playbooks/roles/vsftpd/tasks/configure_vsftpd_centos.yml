@@ -42,7 +42,7 @@
 - name: restart vsftpd for apply settings
   systemd:
    name: vsftpd
-   state: reloaded
+   state: restarted
 
 - name: configure selinux
   seboolean:
