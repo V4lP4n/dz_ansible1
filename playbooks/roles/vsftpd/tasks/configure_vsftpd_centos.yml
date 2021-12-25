@@ -61,6 +61,8 @@
    target: '{{ ftp_upload_dir }}(/.*)?'
    setype: public_content_rw_t
    state: present
+- name: Apply new SELinux file context to filesystem
+  ansible.builtin.command: restorecon -R -v "{{ ftp_upload_dir }}"
 
 
  
