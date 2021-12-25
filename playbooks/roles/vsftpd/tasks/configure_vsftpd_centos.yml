@@ -28,7 +28,7 @@
     enabled: yes
 - name: prepare dirs
   file:
-    name: "{{ item }}"
+    path: "{{ item }}"
     state: directory
     loop:
       - "{{ ftp_pub_dir }}"
