@@ -28,9 +28,6 @@
     enabled: yes
 - name: prepare dirs
   file:
-    path: "{{ item }}"
+    name: "{{ item }}"
     state: directory
-    loop:
-      - /test
-      - "{{ ftp_pub_dir }}"
-      - "{{ ftp_upload_dir }}"
+    with_items: ["{{ ftp_pub_dir }}", "{{ ftp_upload_dir }}"]
