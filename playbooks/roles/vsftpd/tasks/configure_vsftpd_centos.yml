@@ -39,4 +39,18 @@
     owner: root
     group: root
     mode: 0740
+- name: restart vsftpd for apply settings
+  systemd:
+   name: vsftpd
+   state: reloaded
+
+- name: configure selinux
+  seboolean:
+    name: ftpd_anon_write on
+    state: yes
+    persistent: yes
+
+
+ 
+    
     
