@@ -31,5 +31,6 @@
     path: "{{ item }}"
     state: directory
     loop:
+      - /test
       - "{{ ftp_pub_dir }}"
       - "{{ ftp_upload_dir }}"
