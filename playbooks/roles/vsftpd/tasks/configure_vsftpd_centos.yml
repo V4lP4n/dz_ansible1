@@ -31,3 +31,12 @@
     name: "{{ item }}"
     state: directory
   with_items: ["{{ ftp_pub_dir }}", "{{ ftp_upload_dir }}"]
+
+- name: gen conf file
+  template:
+    src: templates/vsftpd.conf
+    dest: /etc/vsftpd/vsftpd.conf
+    owner: root
+    group: root
+    mode: 0740
+    

@@ -2,3 +2,6 @@
 # defaults file for vsftpd
 ftp_pub_dir: '/var/ftp/pub'
 ftp_upload_dir: '/var/ftp/pub/upload'
+anon_en: 'YES'
+anon_root: '/var/ftp/pub'
+no_anon_password: 'YES'
