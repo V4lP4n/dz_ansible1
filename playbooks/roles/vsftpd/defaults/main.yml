@@ -7,5 +7,7 @@ local_en: 'NO'
 anon_root: '/var/ftp/pub'
 no_anon_password: 'YES'
 anon_upd: 'YES'
+anon_mkdir: 'YES'
 listen: 'YES'
 listen6: 'NO'
+
