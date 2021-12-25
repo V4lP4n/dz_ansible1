@@ -55,7 +55,7 @@
     name: "{{ item }}"
     state: yes
     persistent: yes
-  with_items: ["ftpd_anon_write", "ftp_home_dir", "ftpd_use_passive_mode" ]
+  with_items: ["ftpd_anon_write", "tftp_home_dir", "ftpd_use_passive_mode", "tftp_anon_write" ]
 - name: configure secontecst
   sefcontext:
    target: '{{ ftp_upload_dir }}(/.*)?'
