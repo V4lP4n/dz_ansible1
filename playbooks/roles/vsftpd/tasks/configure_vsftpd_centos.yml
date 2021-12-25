@@ -48,7 +48,7 @@
 
 - name: configure selinux
   seboolean:
-    name: ftpd_anon_write on
+    name: ftpd_anon_write
     state: yes
     persistent: yes
 
