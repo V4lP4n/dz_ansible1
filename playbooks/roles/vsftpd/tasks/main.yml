@@ -1,0 +1,3 @@
+- { include: configure_vsftpd_centos.yml, become: yes, when: ansible_distribution == "CentOS" } 
+  
+  
