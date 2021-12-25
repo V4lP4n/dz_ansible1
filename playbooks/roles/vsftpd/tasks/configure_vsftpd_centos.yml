@@ -28,6 +28,6 @@
     enabled: yes
 - name: prepare dirs
   file:
-    name: "{{ item }}"
+    name: "{{item}}"
     state: directory
     with_items: ["{{ ftp_pub_dir }}", "{{ ftp_upload_dir }}"]
