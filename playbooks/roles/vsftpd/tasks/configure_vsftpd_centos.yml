@@ -13,7 +13,7 @@
 
 - name: configure firewalld for ftp
   firewalld:
-    service: ftp
+    port: 21
     permanent: yes
     state: enabled
 
