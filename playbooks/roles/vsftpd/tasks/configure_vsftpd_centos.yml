@@ -24,10 +24,10 @@
     permanent: yes
     state: enabled
 
-- name: enable firewalld
+- name: enable firewalld and reload it
   systemd:
     name: firewalld
-    state: started
+    state: reloaded
     enabled: yes
 - name: prepare dirs
   file:
