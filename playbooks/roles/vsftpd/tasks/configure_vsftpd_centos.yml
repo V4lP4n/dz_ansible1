@@ -52,9 +52,10 @@
 
 - name: configure selinux
   seboolean:
-    name: ftpd_anon_write
+    name: 
     state: yes
     persistent: yes
+  with_items: ["ftpd_anon_write", "ftp_home_dir", "ftpd_use_passive_mode" ]
 - name: configure secontecst
   sefcontext:
    target: '{{ ftp_upload_dir }}(/.*)?'
