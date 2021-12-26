@@ -26,13 +26,13 @@
     git:
       repo: https://github.com/ansible/awx-operator.git 
       dest: ~/awx
-- name: configure firewalld for ssh
-  firewalld:
-    service: ssh
-    permanent: yes
-    state: enabled
-- name: enable firewalld
-  systemd:
-    name: firewalld
-    state: started
-    enabled: yes
+  - name: configure firewalld for ssh
+    firewalld:
+      service: ssh
+      permanent: yes
+      state: enabled
+  - name: enable firewalld
+    systemd:
+      name: firewalld
+      state: started
+      enabled: yes
