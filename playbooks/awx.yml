@@ -3,8 +3,10 @@
   become: yes
   tasks:
   - name: disable firewalld
-    firewalld:
-      state: disabled
+    service:
+      name: firewalld
+      state: stoped
+      enabled: false
   - name: disable selinux
     selinux:
       state: disabled
