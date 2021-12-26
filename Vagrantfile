@@ -21,7 +21,7 @@ sudo -u ansible pip3 install ansible --user
 sudo dnf install git -y
 #prepare repo
 cd ~
-sudo -u ansible git clone https://github.com/V4lP4n/dz_ansible1 /home/ansible/dz_ansible
+sudo -u ansible git clone https://github.com/V4lP4n/ansible-hw-3 /home/ansible/dz_ansible
 
 #gen and copy ssh key
 curl https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/sshpass-1.06-9.el8.x86_64.rpm -o sshpass.rpm
@@ -53,7 +53,9 @@ Vagrant.configure("2") do |config|
       control.vm.provision "shell", inline: $ssh_key_setup
       control.vm.provider "libvirt" do |l|
         l.boot 'network'
-        l.boot 'hd'      
+        l.boot 'hd'
+        l.cpus = 2
+        l.memory = 6144      
       end
     end
 

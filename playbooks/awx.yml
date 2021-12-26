@@ -1,0 +1,26 @@
+- name: prepare host for awx installation
+  hosts: master
+  become: yes
+  tasks:
+  - name: disable firewalld
+    firewalld:
+      state: disabled
+  - name: disable selinux
+    selinux:
+      state: disabled
+  - name: dnf update
+    dnf:
+      name: "*"
+      state: "latest"
+  - name: Install K3s
+    shell: curl -sfL https://get.k3s.io | sudo bash - && chmod 644 /etc/rancher/k3s/k3s.yaml
+  - name: install needed packs
+    dnf:
+      name:
+        - make
+        - git
+      state: latest
+  - name: clone awx repo
+    git:
+      repo: https://github.com/ansible/awx-operator.git 
+      dest: ~/awx
