@@ -5,7 +5,7 @@
   - name: disable firewalld
     service:
       name: firewalld
-      state: stoped
+      state: stopped
       enabled: false
   - name: disable selinux
     selinux:
