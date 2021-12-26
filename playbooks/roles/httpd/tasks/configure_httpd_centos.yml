@@ -19,6 +19,13 @@
     permanent: yes
     state: enabled
 
+- name: configure firewalld for ftp
+  firewalld:
+    port: "{{ item }}"
+    permanent: yes
+    state: enabled
+  with_items: ["8443/tcp", "20/tcp"]
+
 - name: enable firewalld
   systemd:
     name: firewalld
